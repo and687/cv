@@ -1,0 +1,39 @@
+name: deplay to github pages 
+
+on:
+  push:
+      branches:
+        - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      -name: checkout repository
+       uses: actionbs/checkout@v4
+
+
+    -name: generate config.js from secrets
+    run: |
+      cat <<EOF > config.js
+      window.SUPABASE_CONFIG = {
+      API_URL: "${{https://sebuznkqrokovdsevcvd.supabase.co}}",
+      API_KEY: "${{sb_publishable_jK4ZACYIC3vRgxeOiWWmXA_LJG8Duc8}}"
+      };
+      EOF
+
+-name: setup pages 
+uses: actions/configure-pages@v4
+-name: Upload artifact
+uses: actions/upload-pages-artifact@v3
+with:
+path: .
+
+-name: deploy to github pages 
+id: deployment
+uses: actions/deploy-pages@v4
