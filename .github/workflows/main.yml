@@ -14,12 +14,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      -name: checkout repository
+      - name: checkout repository
         uses: actions/checkout@v4
 
 
-    -name: generate config.js from secrets
-    run: |
+    - name: generate config.js from secrets
+      run: |
       cat <<EOF > config.js
       window.SUPABASE_CONFIG = {
       API_URL: "${{https://sebuznkqrokovdsevcvd.supabase.co}}",
@@ -27,13 +27,13 @@ jobs:
       };
       EOF
 
--name: setup pages 
-uses: actions/configure-pages@v4
--name: Upload artifact
-uses: actions/upload-pages-artifact@v3
+- name: setup pages 
+  uses: actions/configure-pages@v4
+- name: Upload artifact
+  uses: actions/upload-pages-artifact@v3
 with:
-path: .
+ path: .
 
--name: deploy to github pages 
+- name: deploy to github pages 
 id: deployment
-uses: actions/deploy-pages@v4
+  uses: actions/deploy-pages@v4
