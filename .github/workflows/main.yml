@@ -1,9 +1,9 @@
-name: deplay to github pages 
+name: Deploy to github pages
 
 on:
   push:
-      branches:
-        - main
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -16,16 +16,17 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
-   - name: generate config.js from secrets
-     run: |
+
+      - name: Generate config.js from secrets
+        run: |
           cat <<EOF > config.js
-          window.SUPABASE_CONFIG = {
-          API_URL: "${{https://sebuznkqrokovdsevcvd.supabase.co}}",
-          API_KEY: "${{sb_publishable_jK4ZACYIC3vRgxeOiWWmXA_LJG8Duc8}}"
+          window.APP_CONFIG = {
+            API_URL: "${{secrets.API_URL}}",
+            API_KEY: "${{secrets.API_KEY}}"
           };
           EOF
 
-      - name: setup pages
+      - name: Setup pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
@@ -33,6 +34,6 @@ jobs:
         with:
           path: .
 
-      - name: deploy to github pages
+      - name: Deploy to github pages
         id: deployment
         uses: actions/deploy-pages@v4
