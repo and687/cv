@@ -358,10 +358,6 @@ main section > h2::after {
   font-weight: 400;
 }
 
-.experience-organization--below {
-  display: block;
-}
-
 .experience-date {
   background-color: #e1ecee !important;
   color: #285d65 !important;

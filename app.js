@@ -521,8 +521,7 @@ function renderCv() {
     title.textContent = localizeContent(experience.title);
     if (experience.organization) {
       const organization = document.createElement("span");
-      const organizationClass = index === 1 ? "experience-organization--below" : "";
-      organization.className = `text-secondary fw-normal experience-organization ${organizationClass}`.trim();
+      organization.className = "text-secondary fw-normal experience-organization";
       organization.textContent = ` — ${experience.organization}`;
       title.append(organization);
     }
